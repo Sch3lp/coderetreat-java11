@@ -16,6 +16,10 @@ public class Rover {
         this.position = position;
     }
 
+    public Rover receiveForward() {
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
