@@ -13,7 +13,8 @@ public class Rover {
     }
 
     public Rover() {
-
+        this.direction = Direction.NORTH;
+        this.position = new Position(0,0);
     }
 
     @Override
