@@ -4,17 +4,16 @@ import java.util.Objects;
 
 public class Rover {
 
-    private  Direction direction;
-    private  Position position;
+    private final Direction direction;
+    private final Position position;
+
+    public Rover() {
+        this(Direction.NORTH, new Position(0,0));
+    }
 
     public Rover(Direction direction, Position position) {
         this.direction = direction;
         this.position = position;
-    }
-
-    public Rover() {
-        this.direction = Direction.NORTH;
-        this.position = new Position(0,0);
     }
 
     @Override
