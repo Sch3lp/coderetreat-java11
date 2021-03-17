@@ -8,7 +8,7 @@ public class Rover {
     private final Position position;
 
     public Rover() {
-        this(Direction.NORTH, new Position(0,0));
+        this(Direction.NORTH, new Position(0, 0));
     }
 
     public Rover(Direction direction, Position position) {
@@ -17,7 +17,7 @@ public class Rover {
     }
 
     public Rover receiveForward() {
-        return this;
+        return new Rover(this.direction, new Position(0, 1));
     }
 
     @Override

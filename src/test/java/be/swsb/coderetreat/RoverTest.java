@@ -22,4 +22,12 @@ public class RoverTest {
 
         assertThat(newRover).isEqualTo(new Rover(Direction.NORTH, new Position(0,1)));
     }
+
+    @Test
+    void RoverCanReceiveForwardsTwice() {
+        Rover rover = new Rover();
+        Rover newRover = rover.receiveForward().receiveForward();
+
+        assertThat(newRover).isEqualTo(new Rover(Direction.NORTH, new Position(0,2)));
+    }
 }
