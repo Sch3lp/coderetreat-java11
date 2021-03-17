@@ -17,7 +17,7 @@ public class Rover {
     }
 
     public Rover receiveForward() {
-        return new Rover(this.direction, new Position(0, 1));
+        return new Rover(this.direction, this.position.incrementY());
     }
 
     @Override
