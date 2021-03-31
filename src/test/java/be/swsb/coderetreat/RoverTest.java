@@ -21,7 +21,16 @@ public class RoverTest {
     void aRoverCanBeInitializedWithAPositionAndDirection() {
         var marsRover = new Rover(new Position(0, 0), NORTH);
 
-        assertThat(marsRover.getPosition()).isEqualTo(new Position(0,0));
-        assertThat(marsRover.getDirection()).isEqualTo(NORTH);
+        assertThat(marsRover).isEqualTo(new Rover(new Position(0, 0), NORTH));
+    }
+
+    @Test
+    void aRoverMovesForwardsUpTheYAxisWhenReceivesForwards() {
+        final var marsRover = new Rover(new Position(0, 0), NORTH);
+
+        final var updatedRover = marsRover.receiveForwards();
+
+        assertThat(updatedRover).isEqualTo(new Rover(new Position(0, 1), NORTH));
+
     }
 }
