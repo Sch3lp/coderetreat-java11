@@ -12,16 +12,8 @@ public class Rover {
         this.direction = direction;
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public Direction getDirection() {
-        return direction;
-    }
-
     public Rover receiveForwards() {
-        return new Rover(new Position(0,1), this.direction);
+        return new Rover(position.increaseY(), this.direction);
     }
 
     @Override

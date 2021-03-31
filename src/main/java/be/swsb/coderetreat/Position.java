@@ -11,13 +11,10 @@ public class Position {
         this.y = y;
     }
 
-    public int getX() {
-        return x;
-    }
+   public Position increaseY() {
+        return new Position(x, y + 1);
+   }
 
-    public int getY() {
-        return y;
-    }
 
     @Override
     public boolean equals(Object o) {

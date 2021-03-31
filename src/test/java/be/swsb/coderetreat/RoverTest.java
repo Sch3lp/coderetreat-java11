@@ -28,9 +28,8 @@ public class RoverTest {
     void aRoverMovesForwardsUpTheYAxisWhenReceivesForwards() {
         final var marsRover = new Rover(new Position(0, 0), NORTH);
 
-        final var updatedRover = marsRover.receiveForwards();
+        final var updatedRover = marsRover.receiveForwards().receiveForwards();
 
-        assertThat(updatedRover).isEqualTo(new Rover(new Position(0, 1), NORTH));
-
+        assertThat(updatedRover).isEqualTo(new Rover(new Position(0, 2), NORTH));
     }
 }
