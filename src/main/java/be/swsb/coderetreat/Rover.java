@@ -13,6 +13,9 @@ public class Rover {
     }
 
     public Rover receiveForwards() {
+        if (this.direction.equals(Direction.EAST)) {
+            return new Rover(position.increaseX(), this.direction);
+        }
         return new Rover(position.increaseY(), this.direction);
     }
 

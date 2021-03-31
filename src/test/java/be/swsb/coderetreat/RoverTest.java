@@ -40,4 +40,13 @@ public class RoverTest {
 
         assertThat(updatedRover).isEqualTo(new Rover(new Position(0, 2), SOUTH));
     }
+
+    @Test
+    void aRoverMovesForwardsUpTheXAxisWhenReceivesForwardsAndFacingEast() {
+        final var marsRover = new Rover(new Position(0, 0), EAST);
+
+        final var updatedRover = marsRover.receiveForwards().receiveForwards();
+
+        assertThat(updatedRover).isEqualTo(new Rover(new Position(2, 0), EAST));
+    }
 }
