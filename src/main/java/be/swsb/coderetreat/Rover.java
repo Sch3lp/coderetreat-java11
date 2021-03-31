@@ -13,10 +13,13 @@ public class Rover {
     }
 
     public Rover receiveForwards() {
-        if (this.direction.equals(Direction.EAST)) {
-            return new Rover(position.increaseX(), this.direction);
-        }
-        return new Rover(position.increaseY(), this.direction);
+        return switch (this.direction) {
+            case NORTH -> new Rover(position.increaseY(), this.direction);
+            case EAST -> new Rover(position.increaseX(), this.direction);
+            case SOUTH -> new Rover(position.decreaseY(), this.direction);
+            case WEST -> new Rover(position.decreaseX(), this.direction);
+            default -> throw new RuntimeException() ;
+        };
     }
 
     public Rover receiveBackwards() {
