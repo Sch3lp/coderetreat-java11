@@ -1,5 +1,6 @@
 package be.swsb.coderetreat;
 
+import java.util.List;
 import java.util.StringJoiner;
 
 public class Rover {
@@ -13,17 +14,33 @@ public class Rover {
     }
 
     public Rover receiveForwards() {
-        return switch (this.direction) {
-            case NORTH -> new Rover(position.increaseY(), this.direction);
-            case EAST -> new Rover(position.increaseX(), this.direction);
-            case SOUTH -> new Rover(position.decreaseY(), this.direction);
-            case WEST -> new Rover(position.decreaseX(), this.direction);
-            default -> throw new RuntimeException() ;
-        };
+        switch (this.direction) {
+            case NORTH:
+                return new Rover(position.increaseY(), this.direction);
+            case EAST:
+                return new Rover(position.increaseX(), this.direction);
+            case SOUTH:
+                return new Rover(position.decreaseY(), this.direction);
+            case WEST:
+                return new Rover(position.decreaseX(), this.direction);
+            default:
+                throw new RuntimeException() ;
+        }
     }
 
     public Rover receiveBackwards() {
-        return new Rover(position.increaseY(), this.direction);
+        switch (this.direction) {
+            case NORTH:
+                return new Rover(position.decreaseY(), this.direction);
+            case EAST:
+                return new Rover(position.decreaseX(), this.direction);
+            case SOUTH:
+                return new Rover(position.increaseY(), this.direction);
+            case WEST:
+                return new Rover(position.increaseX(), this.direction);
+            default:
+                throw new RuntimeException() ;
+        }
     }
 
     @Override
@@ -50,5 +67,20 @@ public class Rover {
                 .add("position=" + position)
                 .add("direction=" + direction)
                 .toString();
+    }
+
+    public Rover receive(Command... commands) {
+        return List.of(commands).stream().reduce(this, Rover::receiveCmd, (r1, r2) -> r1);
+    }
+
+    private Rover receiveCmd(Command cmd) {
+        switch (cmd) {
+            case FORWARDS:
+                return this.receiveForwards();
+            case BACKWARDS:
+                return this.receiveBackwards();
+            default:
+                throw new RuntimeException("'tis kapot");
+        }
     }
 }
