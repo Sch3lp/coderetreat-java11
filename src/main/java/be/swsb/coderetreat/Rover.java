@@ -16,6 +16,10 @@ public class Rover {
         return new Rover(position.increaseY(), this.direction);
     }
 
+    public Rover receiveBackwards() {
+        return new Rover(position.increaseY(), this.direction);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

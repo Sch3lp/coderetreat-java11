@@ -4,8 +4,7 @@ package be.swsb.coderetreat;
 
 import org.junit.jupiter.api.Test;
 
-import static be.swsb.coderetreat.Direction.EAST;
-import static be.swsb.coderetreat.Direction.NORTH;
+import static be.swsb.coderetreat.Direction.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RoverTest {
@@ -31,5 +30,14 @@ public class RoverTest {
         final var updatedRover = marsRover.receiveForwards().receiveForwards();
 
         assertThat(updatedRover).isEqualTo(new Rover(new Position(0, 2), NORTH));
+    }
+
+    @Test
+    void aRoverMovesBackwardsUpTheYAxisWhenReceivesBackwardsTwiceAndFacingSouth() {
+        final var marsRover = new Rover(new Position(0, 0), SOUTH);
+
+        final var updatedRover = marsRover.receiveBackwards().receiveBackwards();
+
+        assertThat(updatedRover).isEqualTo(new Rover(new Position(0, 2), SOUTH));
     }
 }
