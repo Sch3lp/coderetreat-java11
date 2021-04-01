@@ -2,6 +2,8 @@ package be.swsb.coderetreat;
 
 import java.util.StringJoiner;
 
+import static be.swsb.coderetreat.Direction.*;
+
 public class Position {
     private final int x;
     private final int y;
@@ -16,8 +18,34 @@ public class Position {
     }
 
 
-    public Position increaseYByOne() {
-        return new Position(x,y + 1);
+    private Position increaseXByOne() {
+        return new Position(x + 1, y);
+    }
+
+    private Position increaseYByOne() {
+        return new Position(x, y + 1);
+    }
+
+    private Position decreaseYByOne() {
+        return new Position(x, y - 1);
+    }
+
+    private Position decreaseXByOne() {
+        return new Position(x - 1, y);
+    }
+
+    public Position move(Direction direction) {
+        if (direction.equals(NORTH)) {
+            return increaseYByOne();
+        } else if (direction.equals(EAST)) {
+            return increaseXByOne();
+        } else if (direction.equals(SOUTH)) {
+            return decreaseYByOne();
+        } else if (direction.equals(WEST)) {
+            return decreaseXByOne();
+        } else {
+            throw new IllegalArgumentException("Tis kapot");
+        }
     }
 
     @Override
