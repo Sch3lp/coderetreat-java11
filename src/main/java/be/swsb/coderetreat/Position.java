@@ -15,6 +15,11 @@ public class Position {
         return new Position(x, y);
     }
 
+
+    public Position increaseYByOne() {
+        return new Position(x,y + 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

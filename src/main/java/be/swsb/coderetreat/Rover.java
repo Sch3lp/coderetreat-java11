@@ -2,6 +2,8 @@ package be.swsb.coderetreat;
 
 import java.util.Objects;
 
+import static be.swsb.coderetreat.Position.at;
+
 public class Rover {
 
     private final Position position;
@@ -10,6 +12,10 @@ public class Rover {
     public Rover(Position position, Direction direction){
         this.position = position;
         this.direction = direction;
+    }
+
+    public Rover receive(Command command) {
+        return new Rover(this.position.increaseYByOne(), Direction.NORTH);
     }
 
     @Override

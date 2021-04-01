@@ -26,5 +26,24 @@ public class RoverTest {
         assertThat(rover).isEqualTo(new Rover(at(0,0), NORTH));
     }
 
+    @Test
+    void aRoverCanReceiveForwards_YIsIncreasedByOne() {
+        final var position = at(0, 0);
+        final var rover = new Rover(position, NORTH);
+        final var roverAfterForwards = rover.receive(Command.FORWARDS);
+
+        assertThat(roverAfterForwards).isEqualTo(new Rover(at(0,1), NORTH));
+
+    }
+    @Test
+    void aRoverCanReceiveForwardsTwoTimes_YIsIncreasedByTwo() {
+        final var position = at(0, 0);
+        final var rover = new Rover(position, NORTH);
+        final var roverAfterForwards = rover.receive(Command.FORWARDS).receive(Command.FORWARDS);
+
+        assertThat(roverAfterForwards).isEqualTo(new Rover(at(0,2), NORTH));
+
+    }
+
 
 }
