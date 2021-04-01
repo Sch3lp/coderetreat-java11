@@ -1,7 +1,8 @@
 # Mars Rover Kata
 
 ## Rover Basics
-* [ ] A Rover has a position and a direction it's facing
+* [ ] A Rover has a position (x,y) and a direction it's facing
+* [ ] A Rover can receive multiple commands.
 * [ ] A Rover can receive a "forwards" command, changing its position
 * [ ] A Rover can receive a "backwards" command, changing its position
 * [ ] A Rover can receive a "left" command, turning its direction
