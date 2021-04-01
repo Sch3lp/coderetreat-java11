@@ -3,6 +3,7 @@ package be.swsb.coderetreat;
 
 import org.junit.jupiter.api.Test;
 
+import static be.swsb.coderetreat.Command.BACKWARDS;
 import static be.swsb.coderetreat.Command.FORWARDS;
 import static be.swsb.coderetreat.Direction.*;
 import static be.swsb.coderetreat.Position.at;
@@ -27,7 +28,7 @@ public class RoverTest {
     }
 
     @Test
-    void aRoverCanReceiveForwardsTwoTimes_YIsIncreasedByTwo() {
+    void aRoverCanReceiveForwardsTwoTimesWhenFacingNorth_YIsIncreasedByTwo() {
         final var position = at(0, 0);
         final var rover = new Rover(position, NORTH);
         final var roverAfterForwards = rover.receive(FORWARDS).receive(FORWARDS);
@@ -60,6 +61,42 @@ public class RoverTest {
         final var roverAfterForwards = rover.receive(FORWARDS).receive(FORWARDS);
 
         assertThat(roverAfterForwards).isEqualTo(new Rover(at(-2, 0), WEST));
+    }
+
+    @Test
+    void aRoverCanReceiveBackwardsTwoTimesWhenFacingNorth_YIsDecreasedByTwo() {
+        final var position = at(0, 0);
+        final var rover = new Rover(position, NORTH);
+        final var roverAfterBackwards = rover.receive(BACKWARDS).receive(BACKWARDS);
+
+        assertThat(roverAfterBackwards).isEqualTo(new Rover(at(0, -2), NORTH));
+    }
+
+    @Test
+    void aRoverCanReceiveBackwardsTwoTimesWhenFacingEast_XIsDecreasedByTwo() {
+        final var position = at(0, 0);
+        final var rover = new Rover(position, EAST);
+        final var roverAfterBackwards = rover.receive(BACKWARDS).receive(BACKWARDS);
+
+        assertThat(roverAfterBackwards).isEqualTo(new Rover(at(-2, 0), EAST));
+    }
+
+    @Test
+    void aRoverCanReceiveBackwardsTwoTimesWhenFacingSouth_YIsIncreasedByTwo() {
+        final var position = at(0, 0);
+        final var rover = new Rover(position, SOUTH);
+        final var roverAfterBackwards = rover.receive(BACKWARDS).receive(BACKWARDS);
+
+        assertThat(roverAfterBackwards).isEqualTo(new Rover(at(0, 2), SOUTH));
+    }
+
+    @Test
+    void aRoverCanReceiveBackwardsTwoTimesWhenFacingWest_XIsIncreasedByTwo() {
+        final var position = at(0, 0);
+        final var rover = new Rover(position, WEST);
+        final var roverAfterBackwards = rover.receive(BACKWARDS).receive(BACKWARDS);
+
+        assertThat(roverAfterBackwards).isEqualTo(new Rover(at(2, 0), WEST));
     }
 
 }

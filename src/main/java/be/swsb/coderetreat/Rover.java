@@ -2,18 +2,24 @@ package be.swsb.coderetreat;
 
 import java.util.Objects;
 
+import static be.swsb.coderetreat.Command.FORWARDS;
+
 public class Rover {
 
     private final Position position;
-    private final Direction direction;
+    private final Direction facingDirection;
 
-    public Rover(Position position, Direction direction) {
+    public Rover(Position position, Direction facingDirection) {
         this.position = position;
-        this.direction = direction;
+        this.facingDirection = facingDirection;
     }
 
     public Rover receive(Command command) {
-        return new Rover(this.position.move(direction), this.direction);
+        if (command.equals(FORWARDS)) {
+            return new Rover(this.position.move(facingDirection), this.facingDirection);
+        } else {
+            return new Rover(this.position.move(facingDirection.opposite()), this.facingDirection);
+        }
     }
 
     @Override
@@ -21,19 +27,19 @@ public class Rover {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rover rover = (Rover) o;
-        return Objects.equals(position, rover.position) && direction == rover.direction;
+        return Objects.equals(position, rover.position) && facingDirection == rover.facingDirection;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, direction);
+        return Objects.hash(position, facingDirection);
     }
 
     @Override
     public String toString() {
         return "Rover{" +
                 "position=" + position +
-                ", direction=" + direction +
+                ", direction=" + facingDirection +
                 '}';
     }
 }
