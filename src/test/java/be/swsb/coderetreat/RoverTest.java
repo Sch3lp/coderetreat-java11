@@ -4,6 +4,8 @@ package be.swsb.coderetreat;
 
 import org.junit.jupiter.api.Test;
 
+import static be.swsb.coderetreat.Direction.NORTH;
+import static be.swsb.coderetreat.Position.at;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RoverTest {
@@ -18,11 +20,11 @@ public class RoverTest {
 
     @Test
     void aRoverCanBeInitializedWithAPositionAndADirection() {
-        final var position = new Position(0, 0);
-        final var direction = Direction.NORTH;
-        final var rover = new Rover(position, direction);
+        final var position = at(0, 0);
+        final var rover = new Rover(position, NORTH);
 
-        assertThat(rover.getPosition()).isEqualTo(new Position(0,0));
-        assertThat(rover.getDirection()).isEqualTo(Direction.NORTH);
+        assertThat(rover).isEqualTo(new Rover(at(0,0), NORTH));
     }
+
+
 }

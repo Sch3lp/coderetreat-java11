@@ -1,5 +1,7 @@
 package be.swsb.coderetreat;
 
+import java.util.Objects;
+
 public class Rover {
 
     private final Position position;
@@ -10,11 +12,24 @@ public class Rover {
         this.direction = direction;
     }
 
-    public Position getPosition() {
-        return position;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rover rover = (Rover) o;
+        return Objects.equals(position, rover.position) && direction == rover.direction;
     }
 
-    public Direction getDirection() {
-        return direction;
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, direction);
+    }
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "position=" + position +
+                ", direction=" + direction +
+                '}';
     }
 }
