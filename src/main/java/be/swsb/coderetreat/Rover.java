@@ -3,6 +3,7 @@ package be.swsb.coderetreat;
 import java.util.Objects;
 
 import static be.swsb.coderetreat.Command.FORWARDS;
+import static be.swsb.coderetreat.Command.LEFT;
 
 public class Rover {
 
@@ -15,7 +16,9 @@ public class Rover {
     }
 
     public Rover receive(Command command) {
-        if (command.equals(FORWARDS)) {
+        if (command.equals(LEFT)) {
+            return new Rover(this.position, Direction.WEST);
+        } else if (command.equals(FORWARDS)) {
             return new Rover(this.position.move(facingDirection), this.facingDirection);
         } else {
             return new Rover(this.position.move(facingDirection.opposite()), this.facingDirection);
