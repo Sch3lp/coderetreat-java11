@@ -3,10 +3,10 @@ package be.swsb.coderetreat.rover.commands;
 import be.swsb.coderetreat.rover.*;
 
 public interface Command {
-    Forwards FORWARDS = Forwards.instance;
-    Backwards BACKWARDS = Backwards.instance;
-    Right RIGHT = Right.instance;
-    Left LEFT = Left.instance;
+    Rover.Forwards FORWARDS = Rover.Forwards.instance;
+    Rover.Backwards BACKWARDS = Rover.Backwards.instance;
+    Rover.Right RIGHT = Rover.Right.instance;
+    Rover.Left LEFT = Rover.Left.instance;
 
     Rover execute(Rover rover);
 

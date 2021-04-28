@@ -22,19 +22,6 @@ public class Rover {
         return command.execute(this);
     }
 
-    Rover moveForwards() {
-        return aRover(this.position.move(facingDirection), this.facingDirection);
-    }
-    Rover moveBackwards() {
-        return aRover(this.position.move(facingDirection.opposite()), this.facingDirection);
-    }
-    Rover rotateRight() {
-        return aRover(this.position, this.facingDirection.rotateClockwise());
-    }
-    Rover rotateLeft() {
-        return aRover(this.position, this.facingDirection.rotateCounterClockwise());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,4 +42,55 @@ public class Rover {
                 ", direction=" + facingDirection +
                 '}';
     }
+
+    // Command implementations
+    public static final class Forwards implements Command.MoveCommand {
+        public static final Forwards instance = new Forwards();
+
+        private Forwards() {
+        }
+
+        @Override
+        public Rover execute(Rover rover) {
+            return aRover(rover.position.move(rover.facingDirection), rover.facingDirection);
+        }
+    }
+
+    public static final class Backwards implements Command.MoveCommand {
+        public static final Backwards instance = new Backwards();
+
+        private Backwards() {
+        }
+
+        @Override
+        public Rover execute(Rover rover) {
+            return aRover(rover.position.move(rover.facingDirection.opposite()), rover.facingDirection);
+        }
+    }
+
+    public static final class Right implements Command.RotateCommand {
+        public static final Right instance = new Right();
+
+        private Right() {
+        }
+
+        @Override
+        public Rover execute(Rover rover) {
+            return aRover(rover.position, rover.facingDirection.rotateClockwise());
+        }
+    }
+
+    public static final class Left implements Command.RotateCommand {
+        public static final Left instance = new Left();
+
+        private Left() {
+        }
+
+        @Override
+        public Rover execute(Rover rover) {
+            return aRover(rover.position, rover.facingDirection.rotateCounterClockwise());
+        }
+
+    }
+
 }
