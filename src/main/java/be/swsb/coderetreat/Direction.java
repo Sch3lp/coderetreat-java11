@@ -16,23 +16,17 @@ public enum Direction {
         }
     }
 
-    public Direction rotateCounterClockwise() {
-        switch (this) {
-            case NORTH: return WEST;
-            case EAST: return NORTH;
-            case SOUTH: return EAST;
-            case WEST: return SOUTH;
-            default: throw new IllegalArgumentException("Explosion!");
-        }
-    }
-
     public Direction rotateClockwise() {
         switch (this) {
             case NORTH: return EAST;
             case EAST: return SOUTH;
             case SOUTH: return WEST;
             case WEST: return NORTH;
-            default: throw new IllegalArgumentException("Explosion!");
+            default: throw new IllegalArgumentException("Explosion!!!");
         }
+    }
+
+    public Direction rotateCounterClockwise() {
+        return rotateClockwise().opposite();
     }
 }

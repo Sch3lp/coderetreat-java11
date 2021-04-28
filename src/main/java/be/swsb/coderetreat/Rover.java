@@ -2,8 +2,6 @@ package be.swsb.coderetreat;
 
 import java.util.Objects;
 
-import static be.swsb.coderetreat.Command.*;
-
 public class Rover {
 
     private final Position position;
@@ -15,12 +13,18 @@ public class Rover {
     }
 
     public Rover receive(Command command) {
-        return switch (command) {
-            case LEFT -> new Rover(this.position, this.facingDirection.rotateCounterClockwise());
-            case RIGHT -> new Rover(this.position, this.facingDirection.rotateClockwise());
-            case FORWARDS -> new Rover(this.position.move(facingDirection), this.facingDirection);
-            case BACKWARDS -> new Rover(this.position.move(facingDirection.opposite()), this.facingDirection);
-        };
+        switch (command) {
+            case LEFT:
+                return new Rover(this.position, this.facingDirection.rotateCounterClockwise());
+            case RIGHT:
+                return new Rover(this.position, this.facingDirection.rotateClockwise());
+            case FORWARDS:
+                return new Rover(this.position.move(facingDirection), this.facingDirection);
+            case BACKWARDS:
+                return new Rover(this.position.move(facingDirection.opposite()), this.facingDirection);
+            default:
+                throw new IllegalArgumentException("Explosion!!!!!");
+        }
     }
 
     @Override
