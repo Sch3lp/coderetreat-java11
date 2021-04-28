@@ -1,4 +1,4 @@
-package be.swsb.coderetreat;
+package be.swsb.coderetreat.rover;
 
 public enum Direction {
     NORTH,

@@ -1,8 +1,8 @@
-package be.swsb.coderetreat;
+package be.swsb.coderetreat.rover;
 
 import java.util.StringJoiner;
 
-import static be.swsb.coderetreat.Direction.*;
+import static be.swsb.coderetreat.rover.Direction.*;
 
 public class Position {
     private final int x;

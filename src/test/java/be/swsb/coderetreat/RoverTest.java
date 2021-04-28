@@ -3,10 +3,10 @@ package be.swsb.coderetreat;
 
 import org.junit.jupiter.api.Test;
 
-import static be.swsb.coderetreat.Command.*;
-import static be.swsb.coderetreat.Direction.*;
-import static be.swsb.coderetreat.Position.at;
-import static be.swsb.coderetreat.Rover.aRover;
+import static be.swsb.coderetreat.rover.Direction.*;
+import static be.swsb.coderetreat.rover.Position.at;
+import static be.swsb.coderetreat.rover.Rover.aRover;
+import static be.swsb.coderetreat.rover.commands.Command.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RoverTest {
