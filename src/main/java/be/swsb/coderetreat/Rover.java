@@ -15,16 +15,12 @@ public class Rover {
     }
 
     public Rover receive(Command command) {
-        if (command.equals(LEFT)) {
-            return new Rover(this.position, this.facingDirection.rotateCounterClockwise());
-        } else if (command.equals(RIGHT)) {
-            return new Rover(this.position, this.facingDirection.rotateClockwise());
-        }
-        else if (command.equals(FORWARDS)) {
-            return new Rover(this.position.move(facingDirection), this.facingDirection);
-        } else {
-            return new Rover(this.position.move(facingDirection.opposite()), this.facingDirection);
-        }
+        return switch (command) {
+            case LEFT -> new Rover(this.position, this.facingDirection.rotateCounterClockwise());
+            case RIGHT -> new Rover(this.position, this.facingDirection.rotateClockwise());
+            case FORWARDS -> new Rover(this.position.move(facingDirection), this.facingDirection);
+            case BACKWARDS -> new Rover(this.position.move(facingDirection.opposite()), this.facingDirection);
+        };
     }
 
     @Override
