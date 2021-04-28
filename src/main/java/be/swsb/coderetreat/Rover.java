@@ -19,15 +19,35 @@ public class Rover {
     public Rover receive(Command command) {
         switch (command) {
             case LEFT:
-                return aRover(this.position, this.facingDirection.rotateCounterClockwise());
             case RIGHT:
-                return aRover(this.position, this.facingDirection.rotateClockwise());
+                return rotate(command);
+            case FORWARDS:
+            case BACKWARDS:
+                return move(command);
+            default:
+                throw new IllegalArgumentException("Explosion!!!!!");
+        }
+    }
+
+    private Rover move(Command command) {
+        switch (command) {
             case FORWARDS:
                 return aRover(this.position.move(facingDirection), this.facingDirection);
             case BACKWARDS:
                 return aRover(this.position.move(facingDirection.opposite()), this.facingDirection);
             default:
-                throw new IllegalArgumentException("Explosion!!!!!");
+                throw new IllegalArgumentException("Not a move command");
+        }
+    }
+
+    private Rover rotate(Command command) {
+        switch (command) {
+            case LEFT:
+                return aRover(this.position, this.facingDirection.rotateCounterClockwise());
+            case RIGHT:
+                return aRover(this.position, this.facingDirection.rotateClockwise());
+            default:
+                throw new IllegalArgumentException("Not a rotate command");
         }
     }
 
