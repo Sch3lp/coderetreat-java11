@@ -2,6 +2,9 @@ package be.swsb.coderetreat.rover;
 
 import be.swsb.coderetreat.rover.commands.Command;
 
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
 public class Rover {
@@ -18,8 +21,19 @@ public class Rover {
         return new Rover(position, facingDirection);
     }
 
-    public Rover receive(Command command) {
-        return command.execute(this);
+    public Rover receive(Command command, Command... commands) {
+        final var allCommands = new java.util.ArrayList<>(List.of(command));
+        allCommands.addAll(Arrays.asList(commands));
+        final var iterator = allCommands.iterator();
+        return loop(this, iterator);
+    }
+
+    private Rover loop(Rover acc, Iterator<Command> commands) {
+        if (!commands.hasNext()) {
+            return acc;
+        } else {
+            return loop(commands.next().execute(acc), commands);
+        }
     }
 
     @Override

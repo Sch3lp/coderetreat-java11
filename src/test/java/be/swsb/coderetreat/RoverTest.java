@@ -134,4 +134,26 @@ public class RoverTest {
         final var roverAfterFourthRight = roverAfterThirdRight.receive(RIGHT);
         assertThat(roverAfterFourthRight).isEqualTo(aRover(at(1, 0), NORTH));
     }
+
+    @Test
+    void aRoverCanReceiveABunchOfCommands() {
+
+        final var roverInFinalPosition = aRover(at(0, 0), NORTH)
+                .receive( FORWARDS  //  0,1
+                        , FORWARDS  //  0,2
+                        , FORWARDS  //  0,3
+                        , LEFT      // facing west
+                        , FORWARDS  // -1,3
+                        , FORWARDS  // -2,3
+                        , LEFT      // facing south
+                        , BACKWARDS // -2,4
+                        , BACKWARDS // -2,5
+                        , RIGHT     // facing west
+                        , BACKWARDS // -1,5
+                        , RIGHT     // facing north
+                        , RIGHT     // facing east
+                );
+
+        assertThat(roverInFinalPosition).isEqualTo(aRover(at(-1,5), EAST));
+    }
 }
