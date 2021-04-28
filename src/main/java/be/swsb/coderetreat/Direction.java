@@ -19,7 +19,8 @@ public enum Direction {
     public Direction rotateCounterClockwise() {
         switch (this) {
             case NORTH: return WEST;
-
+            case EAST: return NORTH;
+            case SOUTH: return EAST;
             case WEST: return SOUTH;
             default: throw new IllegalArgumentException("Explosion!");
         }

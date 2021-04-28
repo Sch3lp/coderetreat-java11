@@ -99,20 +99,20 @@ public class RoverTest {
     }
 
     @Test
-    void aRoverCanReceiveLeftWhenFacingNorth_RoverIsFacingWest() {
-        final var position = at(0, 0);
-        final var rover = new Rover(position, NORTH);
-        final var roverAfterLeft = rover.receive(LEFT);
-
-        assertThat(roverAfterLeft).isEqualTo(new Rover(at(0,0), WEST));
-    }
-
-    @Test
-    void aRoverCanReceiveLeftTwiceWhenFacingNorth_RoverIsFacingSouth() {
+    void aRoverCanReceiveLeft_andRotateCounterClockwise() {
         final var position = at(0, 1);
         final var rover = new Rover(position, NORTH);
-        final var roverAfterLeft = rover.receive(LEFT).receive(LEFT);
 
-        assertThat(roverAfterLeft).isEqualTo(new Rover(at(0,1), SOUTH));
+        final var roverAfterFirstLeft = rover.receive(LEFT);
+        assertThat(roverAfterFirstLeft).isEqualTo(new Rover(at(0, 1), WEST));
+
+        final var roverAfterSecondLeft = roverAfterFirstLeft.receive(LEFT);
+        assertThat(roverAfterSecondLeft).isEqualTo(new Rover(at(0, 1), SOUTH));
+
+        final var roverAfterThirdLeft = roverAfterSecondLeft.receive(LEFT);
+        assertThat(roverAfterThirdLeft).isEqualTo(new Rover(at(0, 1), EAST));
+
+        final var roverAfterFourthLeft = roverAfterThirdLeft.receive(LEFT);
+        assertThat(roverAfterFourthLeft).isEqualTo(new Rover(at(0, 1), NORTH));
     }
 }
