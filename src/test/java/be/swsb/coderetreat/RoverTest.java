@@ -3,8 +3,7 @@ package be.swsb.coderetreat;
 
 import org.junit.jupiter.api.Test;
 
-import static be.swsb.coderetreat.Command.BACKWARDS;
-import static be.swsb.coderetreat.Command.FORWARDS;
+import static be.swsb.coderetreat.Command.*;
 import static be.swsb.coderetreat.Direction.*;
 import static be.swsb.coderetreat.Position.at;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -99,4 +98,12 @@ public class RoverTest {
         assertThat(roverAfterBackwards).isEqualTo(new Rover(at(2, 0), WEST));
     }
 
+    @Test
+    void aRoverCanReceiveLeftWhenFacingNorth_RoverIsFacingWest() {
+        final var position = at(0, 0);
+        final var rover = new Rover(position, NORTH);
+        final var roverAfterLeft = rover.receive(LEFT);
+
+        assertThat(roverAfterLeft).isEqualTo(new Rover(at(0,0), WEST));
+    }
 }
