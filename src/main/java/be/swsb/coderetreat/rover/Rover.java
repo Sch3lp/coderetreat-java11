@@ -21,33 +21,22 @@ public class Rover {
     }
 
     public Rover receive(Command command) {
-        if (command instanceof MoveCommand) {
-            return move((MoveCommand) command);
-        }
-        if (command instanceof RotateCommand) {
-            return rotate((RotateCommand) command);
-        }
-        throw new IllegalArgumentException("Explosion!!!!!");
+        return command.execute(this);
     }
 
-    private Rover move(MoveCommand command) {
-        if (command.isForwards()) {
-            return aRover(this.position.move(facingDirection), this.facingDirection);
-        }
-        if (command.isBackwards()) {
-            return aRover(this.position.move(facingDirection.opposite()), this.facingDirection);
-        }
-        throw new IllegalArgumentException("Not a move command");
+    public Rover moveBackwards() {
+        return aRover(this.position.move(facingDirection.opposite()), this.facingDirection);
     }
 
-    private Rover rotate(RotateCommand command) {
-        if (command.isLeft()) {
-            return aRover(this.position, this.facingDirection.rotateCounterClockwise());
-        }
-        if (command.isRight()) {
-            return aRover(this.position, this.facingDirection.rotateClockwise());
-        }
-        throw new IllegalArgumentException("Not a rotate command");
+    public Rover moveForwards() {
+        return aRover(this.position.move(facingDirection), this.facingDirection);
+    }
+    public Rover rotateRight() {
+        return aRover(this.position, this.facingDirection.rotateClockwise());
+    }
+
+    public Rover rotateLeft() {
+        return aRover(this.position, this.facingDirection.rotateCounterClockwise());
     }
 
     @Override
