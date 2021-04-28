@@ -7,21 +7,25 @@ public class Rover {
     private final Position position;
     private final Direction facingDirection;
 
-    public Rover(Position position, Direction facingDirection) {
+    private Rover(Position position, Direction facingDirection) {
         this.position = position;
         this.facingDirection = facingDirection;
+    }
+
+    public static Rover aRover(Position position, Direction facingDirection) {
+        return new Rover(position, facingDirection);
     }
 
     public Rover receive(Command command) {
         switch (command) {
             case LEFT:
-                return new Rover(this.position, this.facingDirection.rotateCounterClockwise());
+                return aRover(this.position, this.facingDirection.rotateCounterClockwise());
             case RIGHT:
-                return new Rover(this.position, this.facingDirection.rotateClockwise());
+                return aRover(this.position, this.facingDirection.rotateClockwise());
             case FORWARDS:
-                return new Rover(this.position.move(facingDirection), this.facingDirection);
+                return aRover(this.position.move(facingDirection), this.facingDirection);
             case BACKWARDS:
-                return new Rover(this.position.move(facingDirection.opposite()), this.facingDirection);
+                return aRover(this.position.move(facingDirection.opposite()), this.facingDirection);
             default:
                 throw new IllegalArgumentException("Explosion!!!!!");
         }
