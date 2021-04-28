@@ -115,4 +115,22 @@ public class RoverTest {
         final var roverAfterFourthLeft = roverAfterThirdLeft.receive(LEFT);
         assertThat(roverAfterFourthLeft).isEqualTo(new Rover(at(0, 1), NORTH));
     }
+
+    @Test
+    void aRoverCanReceiveRight_andRotateClockwise() {
+        final var position = at(1, 0);
+        final var rover = new Rover(position, NORTH);
+
+        final var roverAfterFirstRight = rover.receive(RIGHT);
+        assertThat(roverAfterFirstRight).isEqualTo(new Rover(at(1, 0), EAST));
+
+        final var roverAfterSecondRight = roverAfterFirstRight.receive(RIGHT);
+        assertThat(roverAfterSecondRight).isEqualTo(new Rover(at(1, 0), SOUTH));
+
+        final var roverAfterThirdRight = roverAfterSecondRight.receive(RIGHT);
+        assertThat(roverAfterThirdRight).isEqualTo(new Rover(at(1, 0), WEST));
+
+        final var roverAfterFourthRight = roverAfterThirdRight.receive(RIGHT);
+        assertThat(roverAfterFourthRight).isEqualTo(new Rover(at(1, 0), NORTH));
+    }
 }
