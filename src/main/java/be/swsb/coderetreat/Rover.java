@@ -17,7 +17,7 @@ public class Rover {
 
     public Rover receive(Command command) {
         if (command.equals(LEFT)) {
-            return new Rover(this.position, Direction.WEST);
+            return new Rover(this.position, this.facingDirection.rotateCounterClockwise());
         } else if (command.equals(FORWARDS)) {
             return new Rover(this.position.move(facingDirection), this.facingDirection);
         } else {

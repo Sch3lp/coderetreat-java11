@@ -106,4 +106,13 @@ public class RoverTest {
 
         assertThat(roverAfterLeft).isEqualTo(new Rover(at(0,0), WEST));
     }
+
+    @Test
+    void aRoverCanReceiveLeftTwiceWhenFacingNorth_RoverIsFacingSouth() {
+        final var position = at(0, 1);
+        final var rover = new Rover(position, NORTH);
+        final var roverAfterLeft = rover.receive(LEFT).receive(LEFT);
+
+        assertThat(roverAfterLeft).isEqualTo(new Rover(at(0,1), SOUTH));
+    }
 }

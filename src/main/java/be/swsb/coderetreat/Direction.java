@@ -15,4 +15,13 @@ public enum Direction {
             default: throw new IllegalArgumentException("Explosion!");
         }
     }
+
+    public Direction rotateCounterClockwise() {
+        switch (this) {
+            case NORTH: return WEST;
+
+            case WEST: return SOUTH;
+            default: throw new IllegalArgumentException("Explosion!");
+        }
+    }
 }
