@@ -1,8 +1,6 @@
 package be.swsb.coderetreat.rover;
 
 import be.swsb.coderetreat.rover.commands.Command;
-import be.swsb.coderetreat.rover.commands.Command.MoveCommand;
-import be.swsb.coderetreat.rover.commands.Command.RotateCommand;
 
 import java.util.Objects;
 
@@ -24,18 +22,16 @@ public class Rover {
         return command.execute(this);
     }
 
-    public Rover moveBackwards() {
-        return aRover(this.position.move(facingDirection.opposite()), this.facingDirection);
-    }
-
-    public Rover moveForwards() {
+    Rover moveForwards() {
         return aRover(this.position.move(facingDirection), this.facingDirection);
     }
-    public Rover rotateRight() {
+    Rover moveBackwards() {
+        return aRover(this.position.move(facingDirection.opposite()), this.facingDirection);
+    }
+    Rover rotateRight() {
         return aRover(this.position, this.facingDirection.rotateClockwise());
     }
-
-    public Rover rotateLeft() {
+    Rover rotateLeft() {
         return aRover(this.position, this.facingDirection.rotateCounterClockwise());
     }
 
